@@ -1,0 +1,11 @@
+{
+    "name": "server",
+    "version": "0.0.1",
+    "description": "A simple file server",
+    "author": "Ravi Tadinada <discursor@gmail.com>",
+    "dependencies": {
+        "optimist": "~0.6.0",
+        "mongodb": "~2.1.0"
+    }
+}
+
