@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var http = require('http');
+var url = require('url');
 var args = require('optimist').argv;
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
@@ -33,9 +34,14 @@ var dbUrl = 'mongodb://localhost:27017/mipdata'
 // Server
 var server = http.createServer(function(req, res) {
     console.log('Received request for ' + req.url);
-    var match = null;
-    var reMatch = null;
-    if(req.url.startsWith('/api')) {
+    url_parts = url.parse(req.url);
+    url_path = url_parts.path;
+
+    if(url_path.startsWith('/api')) {
+        console.log(url_parts);
+        var match = null;
+        var reMatch = null;
+
         for(var i = 0; i < reList.length; i++) {
             match = req.url.match(reList[i]);
             reMatch = reList[i];

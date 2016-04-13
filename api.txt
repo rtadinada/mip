@@ -1,0 +1,64 @@
+This is an API to access the campaign finance data provided by MapLight. It breaks down contributions to congressmen by interest group, the preferences for interest groups on bills, and the votes on congressmen for each bill.
+
+
+PATH: /interest_groups?include_positions=__include_positions__
+METHOD: GET
+PARAMETERS:
+    - include_positions: 0 or 1, returns positions if 1.
+
+Returns a JSON list of all the interest groups as InterestGroup objects. If include_positions is 1, then includes the positions attribute for each interest group.
+
+
+PATH: /interest_group/_id_
+METHOD: GET
+PARAMETERS:
+    - id: interest group id number
+
+Returns the InterestGroup object corresponding to the given id.
+
+
+PATH: /congressmen?include_votes=__include_votes__
+METHOD: GET
+PARAMETERS:
+    - include_votes: 0 or 1, returns votes if 1.
+
+Returns a JSON list of all the congress men as Congressman objects. If include_votes is 1, then incldues the votes attribute for each congressman.
+
+
+PATH: /congressman/_id_
+METHOD: GET
+PARAMETERS:
+    - id: congressman id number
+
+Returns the Congressman object corresponding to the given id.
+
+
+PATH: /bills
+METHOD: GET
+
+Returns all the Bill objects.
+
+
+PATH: /bill/_id_
+METHOD: GET
+PARAMETERS:
+    - id: bill id number
+
+Returns the Bill object corresponding to the given id.
+
+
+OBJECTS:
+InterestGroup
+    - id: integer; id number
+    - name: string; name of the interest group
+    - positions: dictionary; dictionary of bill id -> interest group position
+
+Congressman
+    - id: integer; id number
+    - name: string; name of the congressman
+    - votes: dictionary; dictionary of bill id -> vote
+
+Bill
+    - id: integer; id number
+    - name: string; name of the bill
+
